@@ -8,6 +8,53 @@ const ProductDetails = () => {
   const { img, name, price, discount_price, quantity } = product;
   const [buyingQuantity, setBuyingQuantity] = useState(1);
 
+  // const handleAddToCart= (item) =>{
+
+  //   if(user && user.email){
+  //    const cartItem ={
+  //     menuId: _id,
+  //     name,
+  //     price,
+  //     image,
+  //      email: user.email
+  //    }
+  //   axiosSecure.post('/carts', cartItem)
+  //    .then(res=>{
+  //     // console.log(res.data);
+  //      if(res.data.insertedId){
+        
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: `${name} added to the cart`,
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       });
+       
+  //       //  refetch cart to count item
+  //       refetch();
+  //     }
+  //     })
+  //   }
+  //     else{
+  //       Swal.fire({
+  //         title: "Please, login!",
+  //         text: "login ",
+  //         icon: "warning",
+  //         showCancelButton: true,
+  //         confirmButtonColor: "#3085d6",
+  //         cancelButtonColor: "#d33",
+  //         confirmButtonText: "login now!"
+  //       })
+  //       .then((result) => {
+  //         if (result.isConfirmed) {
+  //           navigate('/login', {state: {from:location}})
+  //         }
+  //       });
+        
+  //     }
+  // }
+
   return (
     <section>
       <div className="container mx-auto">

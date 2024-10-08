@@ -58,6 +58,11 @@ const NavBar = () => {
                 Blog
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link fw-semibold">
+                login
+              </Link>
+            </li>
           </ul>
           <form className="d-flex" role="search">
             <input

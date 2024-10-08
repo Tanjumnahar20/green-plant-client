@@ -25,31 +25,31 @@ const Video = () => {
 
       {/*------- This is Video Modal section-------  */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="videoModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="videoModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body w-100">
+            <div className="modal-body w-100">
               <iframe
                 width="100%"
                 height="300"
                 src="https://www.youtube.com/embed/AGcTCvn-a6g?start=18"
                 title="YouTube video player"
-                frameborder="0"
+                style={{ border: "none" }} 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>
