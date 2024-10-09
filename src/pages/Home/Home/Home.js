@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import About from "../../About/About";
@@ -15,13 +16,12 @@ const Home = () => {
     <main>
       <Banner />
       <ShoppingArea />
-      {/* <About /> */}
       <Products />
       <Advertise />
       <Shop />
       <FeedBack />
       <Video />
-      {/* <ContactUs /> */}
+  
     </main>
   );
 };

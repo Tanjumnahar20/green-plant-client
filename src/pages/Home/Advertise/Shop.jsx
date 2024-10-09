@@ -8,6 +8,7 @@ const Shop = () => {
       data-aos="fade-up"
       data-aos-offset="300"
     >
+      <div>shopping in home</div>
       <div className="row">
         <div className="col-sm-12 col-lg-6 py-5">
           <div

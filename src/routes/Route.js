@@ -8,9 +8,12 @@ import Products from "../pages/Home/Products/Products";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Blogs from "../pages/Blogs/Blogs";
 import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
+import Cart from "../pages/Carts/Cart";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 // router
-const router = createBrowserRouter([
+  const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
@@ -43,11 +46,20 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
+        path:'signup',
+        element:<SignUp></SignUp>
+      },
+      {
         path:'login',
         element:<Login></Login>
       },
+      {
+        path:'carts',
+        element:<PrivateRoute><Cart></Cart></PrivateRoute>
+      }
     ],
   },
+ 
 ]);
 
 export default router;

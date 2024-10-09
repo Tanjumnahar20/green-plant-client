@@ -7,6 +7,8 @@ const ProductCard = ({ product }) => {
   const { _id, img, name, discount_price, price } = product;
 
   return (
+  
+
     <div className="col-sm-12 col-md-6 col-lg-4 product-card">
       <div className="card border-0 position-relative overflow-hidden product-card-hover">
         {/* Image section */}

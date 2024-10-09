@@ -1,59 +1,69 @@
 import React, { useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import useAuth from "../../CustomHooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const product = useLoaderData();
-  const { img, name, price, discount_price, quantity } = product;
+  const { img, name, price, discount_price, quantity,_id } = product;
   const [buyingQuantity, setBuyingQuantity] = useState(1);
+  const{user} = useAuth();
+  const navigate = useNavigate();
+  const location= useLocation();
+  // const from = location.state?.from?.pathname || '/';
 
-  // const handleAddToCart= (item) =>{
 
-  //   if(user && user.email){
-  //    const cartItem ={
-  //     menuId: _id,
-  //     name,
-  //     price,
-  //     image,
-  //      email: user.email
-  //    }
-  //   axiosSecure.post('/carts', cartItem)
-  //    .then(res=>{
-  //     // console.log(res.data);
-  //      if(res.data.insertedId){
+  const handleAddToCart= (item) =>{
+    navigate('/carts')
+
+    if(user && user.email){
+     const cartItem ={
+      menuId: _id,
+      name:name,
+      price:price,
+      img,
+       email: user.email,
+       quantity:quantity
+     }
+    axios.post('http://localhost:5000/carts', cartItem)
+     .then(res=>{
+      console.log(res.data);
+       if(res.data.insertedId){
         
-  //       Swal.fire({
-  //         position: "top-end",
-  //         icon: "success",
-  //         title: `${name} added to the cart`,
-  //         showConfirmButton: false,
-  //         timer: 1500
-  //       });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${name} added to the cart`,
+          showConfirmButton: false,
+          timer: 1500
+        });
        
-  //       //  refetch cart to count item
-  //       refetch();
-  //     }
-  //     })
-  //   }
-  //     else{
-  //       Swal.fire({
-  //         title: "Please, login!",
-  //         text: "login ",
-  //         icon: "warning",
-  //         showCancelButton: true,
-  //         confirmButtonColor: "#3085d6",
-  //         cancelButtonColor: "#d33",
-  //         confirmButtonText: "login now!"
-  //       })
-  //       .then((result) => {
-  //         if (result.isConfirmed) {
-  //           navigate('/login', {state: {from:location}})
-  //         }
-  //       });
+        //  refetch cart to count item
+        // refetch();
+      }
+      })
+    }
+      else{
+        Swal.fire({
+          title: "Please, login!",
+          text: "login ",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "login now!"
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/login', {state: {from:location}})
+          }
+        });
         
-  //     }
-  // }
+      }
+  }
 
   return (
     <section>
@@ -113,7 +123,7 @@ const ProductDetails = () => {
                   style={{ cursor: "pointer" }}
                 />
               </div>
-              <button className="btn btn-green-black w-75">Add To Card</button>
+              <button onClick={handleAddToCart} className="btn btn-green-black w-75">Add To Card</button>
               <button className="btn btn-black w-75 mt-3">Buy It Now</button>
             </div>
           </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/plant-logo.png";
+import { FaShoppingCart } from "react-icons/fa";
+import useAuth from "../../CustomHooks/useAuth";
 
 const NavBar = () => {
+  const{user} = useAuth();
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
@@ -58,12 +61,17 @@ const NavBar = () => {
                 Blog
               </Link>
             </li>
+           { user ?
             <li className="nav-item">
-              <Link to="/login" className="nav-link fw-semibold">
-                login
+              <Link to="/carts" className="nav-link fw-semibold">
+              <FaShoppingCart />
               </Link>
             </li>
+            :
+            <></>
+            }
           </ul>
+           
           <form className="d-flex" role="search">
             <input
               className="form-control me-2 search-field"

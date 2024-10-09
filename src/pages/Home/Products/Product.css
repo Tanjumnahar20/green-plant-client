@@ -40,4 +40,8 @@
   .icon-group {
     z-index: 3;
   }
+
+  .underline{
+    text-decoration: underline;
+  }
   

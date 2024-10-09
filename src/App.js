@@ -11,12 +11,15 @@ import "react-photo-view/dist/react-photo-view.css";
 // aos animation
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+  
+ 
+
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>;
-      {AOS.init({ duration: 800 })}
+    {AOS.init({ duration: 800 })}
     </>
   )
 }

@@ -2,8 +2,16 @@ import React from "react";
 import banner1 from "../../../assets/slider/slider-10-1.jpg";
 import banner2 from "../../../assets/slider/slider-10-2.jpg";
 import banner3 from "../../../assets/slider/slider-10.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../../CustomHooks/useAuth";
 
 const Banner = () => {
+  const {user, logOut} = useAuth();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+  }
   return (
     <header>
       <div
@@ -57,11 +65,19 @@ const Banner = () => {
                 >
                   Gift Green <br /> This <span>Holiday</span>
                 </h2>
+               { !user ?
                 <div>
-                  <button className="btn btn-black px-5 py-2 mt-2">
-                    Discover
-                  </button>
+                  <Link to="/login" className="btn btn-black px-5 py-2 mt-2">
+                    login
+                  </Link>
                 </div>
+                :
+                <div>
+                   <Link onClick={handleLogOut} className="btn btn-black px-5 py-2 mt-2">
+                    logout
+                  </Link>
+                </div>
+                }
               </div>
             </div>
           </div>
@@ -122,9 +138,10 @@ const Banner = () => {
                 </h2>
                 <div>
                   <button className="btn btn-black px-5 py-2 mt-2">
-                    Discover
+                    login
                   </button>
                 </div>
+                
               </div>
             </div>
           </div>

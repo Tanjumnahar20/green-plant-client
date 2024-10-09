@@ -2,8 +2,16 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../CustomHooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  const {user, signIn} = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -16,6 +24,38 @@ const Login = () => {
 
     console.log('Email:', email);
     console.log('Password:', password);
+    signIn(email,password)
+    .then(result=>{
+      const user = result.user;
+      console.log("user signed in", user);
+      form.reset()
+      Swal.fire({
+        title: "login successful",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+
+      navigate(from, {replace:true})
+
+
+    })
+    .catch(err=>{
+      console.log("err in login", err);
+    })
+ 
+
   };
 
   return (
@@ -54,6 +94,7 @@ const Login = () => {
               Login
             </Button>
           </Form>
+          <p>new here? <Link to='/signup'>sign up</Link></p>
         </Col>
       </Row>
     </Container>
