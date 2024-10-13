@@ -18,9 +18,8 @@ const FeedBack = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/feedbacks").then((res) =>
-      res
-        .json()
+    fetch("http://localhost:5000/feedbacks")
+    .then((res) =>res.json())
         .then((data) => {
           console.log(data);
           setFeedbacks(data);
@@ -28,7 +27,7 @@ const FeedBack = () => {
         .catch((error) => {
           console.log(error);
         })
-    );
+   
   }, []);
   return (
     <section

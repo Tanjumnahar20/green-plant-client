@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo/plant-logo.png";
 import { FaShoppingCart } from "react-icons/fa";
 import useAuth from "../../CustomHooks/useAuth";
+import useCartItem from "../../CustomHooks/useCartItem";
 
 const NavBar = () => {
   const{user} = useAuth();
+  const [cart] = useCartItem();
+
+
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
@@ -62,11 +67,18 @@ const NavBar = () => {
               </Link>
             </li>
            { user ?
-            <li className="nav-item">
-              <Link to="/carts" className="nav-link fw-semibold">
-              <FaShoppingCart />
+            // <li className="nav-item">
+            //   <Link to="/dashboard/carts" className="nav-link fw-semibold">
+            //   <FaShoppingCart />
+            //   </Link>
+            // </li>
+              <Link to="/dashboard/carts" type="button" className="btn  position-relative">
+                <FaShoppingCart />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cart.length}
+                  <span className="visually-hidden">unread messages</span>
+                </span>
               </Link>
-            </li>
             :
             <></>
             }

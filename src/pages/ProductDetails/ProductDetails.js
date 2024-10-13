@@ -5,6 +5,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import useAuth from "../../CustomHooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useCartItem from "../../CustomHooks/useCartItem";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -13,11 +14,12 @@ const ProductDetails = () => {
   const{user} = useAuth();
   const navigate = useNavigate();
   const location= useLocation();
+  const [refetch] = useCartItem();
   // const from = location.state?.from?.pathname || '/';
 
 
   const handleAddToCart= (item) =>{
-    navigate('/carts')
+    navigate('/dashboard/carts')
 
     if(user && user.email){
      const cartItem ={
@@ -42,7 +44,7 @@ const ProductDetails = () => {
         });
        
         //  refetch cart to count item
-        // refetch();
+        refetch()
       }
       })
     }

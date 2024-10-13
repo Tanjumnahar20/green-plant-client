@@ -4,13 +4,14 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import app from '../../firebase/firebase.config';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from 'axios';
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(true);
 
     const createUser = (email,password) =>{
         setLoading(true)
@@ -29,8 +30,27 @@ const AuthProvider = ({children}) => {
 
 
         useEffect(()=>{
-            const unsubscribe = onAuthStateChanged(auth,curretUser=>{
-                setUser(curretUser)
+            const unsubscribe = onAuthStateChanged(auth,currentUser=>{
+                setUser(currentUser)
+
+                if(currentUser){
+                    const userInfo ={
+                        email: currentUser.email
+                    }
+                     axios.post('http://localhost:5000/jwt', userInfo)
+                     .then(res=>{
+                        console.log("token",res.data.token,userInfo);
+                        if(res.data.token){
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                     })
+                  }
+        
+                  else{
+                    //  todo:remove token
+                    localStorage.removeItem('access-token')
+                  }
+                  setLoading(false)
             })
             AOS.init({ duration: 800 })
             

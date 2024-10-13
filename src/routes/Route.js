@@ -11,6 +11,9 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Cart from "../pages/Carts/Cart";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import Payment from "../pages/DashBoard/Payment/Payment";
+import Dashboard from "../pages/DashBoard/DashBoard";
+import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 
 // router
   const router = createBrowserRouter([
@@ -53,12 +56,34 @@ import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
         path:'login',
         element:<Login></Login>
       },
-      {
-        path:'carts',
-        element:<PrivateRoute><Cart></Cart></PrivateRoute>
-      }
+      // {
+      //   path:'carts',
+      //   element:<PrivateRoute><Cart></Cart></PrivateRoute>
+      // },
+      // {
+      //   path:'payment',
+      //   element:<Payment></Payment>
+      // },
     ],
   },
+  {
+    path:'/dashboard',
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children:[
+    {
+      path:'carts',
+      element:<Cart></Cart>
+    },
+    {
+      path:'/dashboard/payment',
+      element:<Payment></Payment>
+    },
+    {
+      path:'/dashboard/paymenthistory',
+      element:<PaymentHistory></PaymentHistory>
+    }
+    ]
+  }
  
 ]);
 
