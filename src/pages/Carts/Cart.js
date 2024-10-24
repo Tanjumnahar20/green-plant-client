@@ -1,83 +1,3 @@
-
-// import { Link } from "react-router-dom";
-// import useCartItem from "../../CustomHooks/useCartItem";
-// import Table from 'react-bootstrap/Table';
-// import { useState, useEffect } from "react";
-// import axios from 'axios';
-
-// const Cart = () => {
-//   const [cart, refetch] = useCartItem();
-//   const [totalPrice, setTotalPrice] = useState(0);
-
-//   useEffect(() => {
-    
-//     const calculatedPrice = Math.round(cart.reduce((total, item) => total + item.price , 0));
-//     console.log("totalprice", calculatedPrice);
-//     setTotalPrice(calculatedPrice);
-//   }, [cart]);
-
-//   const handlePaymentSuccess = async () => {
-//     // Send cart information to backend for processing
-//     const paymentData = {
-//       email: cart[0].email, // assuming all items belong to the same user
-//       cartItems: cart,
-//       totalPrice,
-//     };
-
-//     try {
-//       const response = await axios.post('http://localhost:5000/payment', paymentData);
-//       console.log('Payment response:', response.data);
-//       refetch(); // Refresh the cart after successful payment
-//       setTotalPrice(0); // Reset total price
-//     } catch (error) {
-//       console.error('Payment failed:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div className="mt-6">
-//         <h2>Total Items: {cart.length}</h2>
-//         <h2>Total Price: {totalPrice}</h2>
-
-//         {cart.length ? (
-//           <Link to='/dashboard/payment'>
-//             <button onClick={handlePaymentSuccess}>Pay</button>
-//           </Link>
-//         ) : null}
-//       </div>
-
-//       {cart.length ? (
-//         <Table striped bordered hover>
-//           <thead>
-//             <tr>
-//               <th>#</th>
-//               <th>Product Name</th>
-//               <th>Quantity</th>
-//               <th>Price</th>
-//               <th>Email</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {cart.map((item, index) => (
-//               <tr key={item._id}>
-//                 <td>{index + 1}</td>
-//                 <td>{item.name}</td>
-//                 <td>{item.quantity}</td> {/* Display item quantity */}
-//                 <td>{item.price}</td>
-//                 <td>{item.email}</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </Table>
-//       ) : (
-//         <p>No items in the cart.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Cart;
 import { Link } from "react-router-dom";
 import useCartItem from "../../CustomHooks/useCartItem";
 import Table from 'react-bootstrap/Table';
@@ -97,10 +17,10 @@ const Cart = () => {
   }, [cart]);
 
   const handlePaymentSuccess = async () => {
-    if (!cart.length) return; // Prevent payment if the cart is empty
+    if (!cart.length) return;
 
     const paymentData = {
-      email: cart[0].email, // assuming all items belong to the same user
+      email: cart[0].email,
       cartItems: cart,
       totalPrice,
     };
@@ -108,18 +28,16 @@ const Cart = () => {
     try {
       const response = await axios.post('http://localhost:5000/payment', paymentData);
       console.log('Payment response:', response.data);
-      refetch(); // Refresh the cart after successful payment
-      setTotalPrice(0); // Reset total price
+      refetch();
+      setTotalPrice(0);
     } catch (error) {
       console.error('Payment failed:', error);
     }
   };
 
   return (
-    <Container className="">
-        <main>prbbb</main>
-        <header>sugggh</header>
-      <div className=" mb-3 text-center">
+    <Container>
+      <div className="mb-3 text-center">
         <h2 className="mb-2">Cart Summary</h2>
         <p><strong>Total Items:</strong> {cart.length}</p>
         <p><strong>Total Price:</strong> ${totalPrice}</p>
@@ -134,11 +52,11 @@ const Cart = () => {
       </div>
 
       {cart.length ? (
-        <Table striped bordered hover responsive className="mt-4">
+        <Table striped bordered hover className="mt-4">
           <thead>
-            <tr>
+            <tr className="text-sm">
               <th>#</th>
-              <th>Product Name</th>
+              <th className="d-none ">Product Name</th> {/* Hide long text on extra small screens */}
               <th>Quantity</th>
               <th>Price</th>
               <th>Email</th>
@@ -147,11 +65,11 @@ const Cart = () => {
           <tbody>
             {cart.map((item, index) => (
               <tr key={item._id}>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.quantity}</td> {/* Display item quantity */}
-                <td>${item.price}</td>
-                <td>{item.email}</td>
+                <td className="text-sm">{index + 1}</td>
+                <td className="text-sm">{item.name}</td>
+                <td className="text-sm">{item.quantity}</td>
+                <td className="text-sm">${item.price}</td>
+                <td className="text-sm text-truncate" style={{ maxWidth: '100px' }}>{item.email}</td> {/* Truncate and make small */}
               </tr>
             ))}
           </tbody>
@@ -164,5 +82,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-

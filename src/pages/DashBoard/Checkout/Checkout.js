@@ -103,7 +103,7 @@ const Checkout = () => {
                       timer: 1500
                     });
   
-                    // navigate('/paymentHistory')
+                    navigate('/dashboard/paymenthistory')
                     
                   }
                 
@@ -132,7 +132,7 @@ const Checkout = () => {
           },
         }}
       />
-       <button className="my-6" type="submit" disabled={!stripe || !clientSecret}>
+       <button variant="success" className="my-6 mt-3" type="submit" disabled={!stripe || !clientSecret}>
         Pay
       </button>
       <p className="">{error}</p>

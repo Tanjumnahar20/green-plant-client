@@ -7,7 +7,7 @@ const Payment = () => {
     const stripePromise = loadStripe(process.env.REACT_APP_Payment_Api_Key)
 
     return (
-        <div>
+        <div className='mt-5'>
 <div>
 <h2 className="">Please pay</h2>
 </div>
