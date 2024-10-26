@@ -30,7 +30,7 @@ const ProductDetails = () => {
        email: user.email,
        quantity:quantity
      }
-    axios.post('http://localhost:5000/carts', cartItem)
+    axios.post('https://green-plant-server-sigma.vercel.app/carts', cartItem)
      .then(res=>{
       console.log(res.data);
        if(res.data.insertedId){

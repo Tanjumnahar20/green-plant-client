@@ -18,7 +18,7 @@ const FeedBack = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/feedbacks")
+    fetch("https://green-plant-server-sigma.vercel.app/feedbacks")
     .then((res) =>res.json())
         .then((data) => {
           console.log(data);

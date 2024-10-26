@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
                     const userInfo ={
                         email: currentUser.email
                     }
-                     axios.post('http://localhost:5000/jwt', userInfo)
+                     axios.post('https://green-plant-server-sigma.vercel.app/jwt', userInfo)
                      .then(res=>{
                         console.log("token",res.data.token,userInfo);
                         if(res.data.token){

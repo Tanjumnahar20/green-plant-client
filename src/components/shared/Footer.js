@@ -94,16 +94,16 @@ const Footer = () => {
                   Contact
                 </h6>
                 <p>
-                  <FaMapMarkerAlt /> Uttara, Dhaka
+                  <FaMapMarkerAlt /> Mirpur, Dhaka
                 </p>
                 <p>
-                  <FaRegEnvelope /> hs.sharif819@gmail.com
+                  <FaRegEnvelope /> tanjumnaharchandana@gmail.com
                 </p>
                 <p>
-                  <FaPhoneAlt /> +8801640911511
+                  <FaPhoneAlt /> +8801533998174
                 </p>
-                <Link className="text-black text-decoration-none" to={"https://sharifs-portfolio.vercel.app/"} >
-                  <FaGlobe /> Sharif Hasan
+                <Link className="text-black text-decoration-none" to={""} >
+                  <FaGlobe /> Tanjum Nahar
                 </Link>
               </div>
             </div>
@@ -128,7 +128,7 @@ const Footer = () => {
                   <FaGoogle />
                 </Link>
 
-                <Link to={"https://sharifs-portfolio.vercel.app/"} className=" m-2 text-black fs-5" role="button">
+                <Link to={""} className=" m-2 text-black fs-5" role="button">
                   <FaGlobe />
                 </Link>
               </div>

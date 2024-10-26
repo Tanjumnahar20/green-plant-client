@@ -26,7 +26,7 @@ const Cart = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/payment', paymentData);
+      const response = await axios.post('https://green-plant-server-sigma.vercel.app/payment',paymentData);
       console.log('Payment response:', response.data);
       refetch();
       setTotalPrice(0);

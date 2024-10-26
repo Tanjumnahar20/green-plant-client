@@ -46,7 +46,7 @@ import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
         path: "/product/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://green-plant-server-sigma.vercel.app/product/${params.id}`),
       },
       {
         path:'signup',
